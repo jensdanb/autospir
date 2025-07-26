@@ -1,0 +1,4 @@
+Main dependencies: 
+- mistralai
+- pandas
+

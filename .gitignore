@@ -4,3 +4,6 @@
 venv/
 # IMPORTANT! FOR SECURITY,  DO NOT CHANGE THE ABOVE THREE 
 
+__pycache__/
+output/*
+input/*
