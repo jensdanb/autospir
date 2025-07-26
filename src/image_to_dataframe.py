@@ -2,8 +2,8 @@ from pathlib import Path
 from glob import iglob
 from pandas import DataFrame
 
-from .image_to_text import image_to_markdown
-from .text_to_dataframe import to_dataframe
+from .request_OCR import image_to_markdown
+from .response_to_df import to_dataframe
 
 
 def make_dataframe(filename: str) -> DataFrame:
