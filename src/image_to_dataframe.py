@@ -26,3 +26,14 @@ def make_dataframe(filename: str) -> DataFrame:
     print("Dataframe result:")
     print(df)
     return df
+
+def make_excel(filename: str):
+    
+    df = make_dataframe(filename)
+
+    target_path = "out" + filename[2:-3] + "xlsx"
+    df.to_excel(target_path)
+
+    print("--------")
+    print("Finished " + filename)
+    print("--------")
