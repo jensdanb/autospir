@@ -13,18 +13,6 @@ def encode_image(image_file: Path):
     base64_data_url = f"data:image/jpeg;base64,{encoded_image}"
     return base64_data_url
 
-def upload(encoded_image: str): 
-    uploaded_file = client.files.upload(
-        file={
-            "file_name": encoded_image.stem,
-            "content": encoded_image.read_bytes(),
-        },
-        purpose="ocr",
-    )
-
-    # Get URL for the uploaded file
-    # signed_url = client.files.get_signed_url(file_id=uploaded_file.id, expiry=1)
-
 
 def image_to_markdown(image_file: Path) -> str:
     
@@ -45,42 +33,3 @@ def image_to_markdown(image_file: Path) -> str:
 
     return image_ocr_markdown
 
-'''
-
-class StructuredOCR(BaseModel):
-    file_name: str
-    topics: list[str]
-    languages: str
-    ocr_contents: dict
-
-def structured_ocr(image_file: Path, ocr_markdown: str) -> StructuredOCR:
-
-    base64_data_url = encode_image(image_file)
-
-    print("Awaiting formatting to table")
-    try: 
-        chat_response = client.chat.parse(
-            model="pixtral-12b-latest",
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        ImageURLChunk(image_url=base64_data_url),
-                        TextChunk(text=(
-                            f"This is the image's OCR in markdown:\n{ocr_markdown}\n.\n"
-                            "Convert this into a structured JSON response "
-                            "with the OCR contents in a sensible dictionnary."
-                            )
-                        )
-                    ]
-                }
-            ],
-            response_format=StructuredOCR,
-            temperature=0
-        )
-    except: 
-        print("---- \n Failed to get response from API \n Likely missing internet connection \n ----")
-        return
-
-    return chat_response.choices[0].message.parsed
-'''
