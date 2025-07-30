@@ -23,7 +23,7 @@ def upload(encoded_image: str):
     )
 
     # Get URL for the uploaded file
-    signed_url = client.files.get_signed_url(file_id=uploaded_file.id, expiry=1)
+    # signed_url = client.files.get_signed_url(file_id=uploaded_file.id, expiry=1)
 
 
 def image_to_markdown(image_file: Path) -> str:
